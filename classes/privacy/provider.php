@@ -88,9 +88,9 @@ class provider implements
         $contextlist->add_from_sql($sql, $params);
 
         $sql = "SELECT c.id
-                  FROM {block_deft_reponse} r
-                  JOIN {block_deft} ON t.id = r.task
-                  JOIN {context} c ON t.instance = c.instanceid
+                  FROM {context} c
+                  JOIN {block_deft} t ON t.instance = c.instanceid
+                  JOIN {block_deft_response} r ON t.id = r.task
                  WHERE c.contextlevel = :contextlevel
                    AND userid = :userid";
         $params = [
